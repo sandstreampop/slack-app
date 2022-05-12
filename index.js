@@ -12,5 +12,12 @@ const app = new App({
 
   console.log("⚡️ Bolt app is running!");
 
-  app.event();
+  app.event("app_mention", async ({ event, logger, say }) => {
+    try {
+      const result = await say(`Hello world, and hello <@${event.user}>!`);
+      logger.info(result);
+    } catch (error) {
+      logger.error(error);
+    }
+  });
 })();
